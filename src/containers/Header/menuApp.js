@@ -1,15 +1,26 @@
 export const adminMenu = [
-    { //hệ thống
-        name: 'menu.system.header', menus: [
-            {
-                name: 'menu.system.system-administrator.header',
-                subMenus: [
-                    { name: 'menu.system.system-administrator.user-manage', link: '/system/user-manage' },
-                    { name: 'menu.system.system-administrator.product-manage', link: '/system/product-manage' },
-                    { name: 'menu.system.system-administrator.register-package-group-or-account', link: '/system/register-package-group-or-account' },
-                ]
-            },
-            // { name: 'menu.system.system-parameter.header', link: '/system/system-parameter' },
-        ]
+    { //người dùng
+        name: 'menu.admin.user', menus: [            
+            { name: 'menu.admin.user-manage-v1', link: '/system/user-manage-v1'},
+            { name: 'menu.admin.user-manage-v2', link: '/system/user-manage-v2'}, 
+            { name: 'menu.admin.doctor-manage', link: '/system/doctor-manage'}   
+
+        ],
+
+    },
+    {   //phòng khám
+        name: 'menu.admin.clinic', menus: [
+            { name: 'menu.admin.clinic-manage', link: '/system/clinic-manage'},
+        ],
+    },
+    {   //chuyên khoa
+        name: 'menu.admin.specialty', menus: [
+            { name: 'menu.admin.specialty-manage', link: '/system/specialty-manage'},
+        ],
+    },
+    {   //phòng khám
+        name: 'menu.admin.handbook', menus: [
+            { name: 'menu.admin.handbook-manage', link: '/system/handbook-manage'},
+        ],
     },
 ];

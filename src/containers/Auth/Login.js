@@ -42,7 +42,8 @@ class Login extends Component {
         });
       }
       if (data && data.errCode === 0) {
-        this.props.userLoginSuccess(data.user);
+        this.props.userLoginSuccess(data.userData);
+        // console.log("data: ", data.userData)
         console.log('login successful');
       }
     } catch (error) {

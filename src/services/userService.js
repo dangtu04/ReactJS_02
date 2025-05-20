@@ -9,5 +9,31 @@ const getAllUsers = (inputId) => {
   return axios.get(`/api/get-users?id=${inputId}`)
 }
 
+const createNewUser = (data) => {
+  return axios.post('/api/create-user', data)
+}
 
-export { userLogin, getAllUsers};
+const deleteUser = (userId) => {
+  return axios.delete('/api/delete-user',{
+    data: {
+      id: userId
+    }
+  })
+}
+
+const editUser = (data) => {
+  return axios.put('/api/edit-user',data)
+}
+
+const getTopDoctor = (limit) => {
+  return axios.get(`/api/get-top-doctor?limit=${limit}`)
+}
+
+const getAllDoctors = () => {
+  return axios.get('/api/get-all-doctor')
+}
+
+const createDoctorDetail = (data) => {
+  return axios.post('/api/save-doctor-info', data)
+}
+export { userLogin, getAllUsers, createNewUser, deleteUser, editUser, getTopDoctor, getAllDoctors, createDoctorDetail};

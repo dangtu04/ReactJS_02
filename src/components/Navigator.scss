@@ -17,8 +17,9 @@
             line-height: 40px;
             padding: 0 15px;
             border-right: 1px solid $border;
+            min-width: 100px;
             &:first-child {
-                border-left: 1px solid $border;
+                // border-left: 1px solid $border;
             }
         }
         .menu-list {
@@ -38,6 +39,7 @@
                 .menu-link {
                     text-decoration: none;
                     color: $text-in-light;
+                    display: block;
                 }
                 .sub-menu-list {
                     display: none;
@@ -68,6 +70,12 @@
                             color: $colormain;
                         }
                     }
+                }
+                &.active {
+                   a{
+                    color: #00c0e7;        
+                   }
+
                 }
                 &.active span {
                     font-weight: 500;
