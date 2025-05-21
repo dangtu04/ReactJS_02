@@ -58,14 +58,14 @@ class Specialty extends React.Component {
           <Slider {...settings}>
             {[1, 2, 3, 4, 5, 6].map((item) => (
               <div key={item} className="slide-item">
-                <Link to='' className="slide-inner">
+                <div className="slide-inner">
                   <img
                     className="specialty-img"
                     src="https://cdn.bookingcare.vn/fo/w640/2023/12/26/101739-y-hoc-co-truyen.png"
                     alt={`specialty-${item}`}
                   />
                   <span>Y học cổ truyển</span>
-                </Link>
+                </div>
               </div>
             ))}
           </Slider>

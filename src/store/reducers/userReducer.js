@@ -6,6 +6,8 @@ const initialState = {
   users: [],
   topDoctor: [],
   allDoctor: [],
+  doctorDetail: {},
+  doctorMarkdown: {},
 };
 
 const appReducer = (state = initialState, action) => {
@@ -60,6 +62,30 @@ const appReducer = (state = initialState, action) => {
 
     case actionTypes.FETCH_ALL_DOCTOR_FAILED:
       state.allDoctor = [];
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_DOCTOR_DETAIL_SUCCESS:
+      state.doctorDetail = action.doctorDetail;
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_DOCTOR_DETAIL_FAILED:
+      state.doctorDetail = {};
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_MARKDOWN_BY_DOCTOR_SUCCESS:
+      state.doctorMarkdown = action.doctorMarkdown;
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_MARKDOWN_BY_DOCTOR_FAILED:
+      state.doctorMarkdown = {};
       return {
         ...state,
       };

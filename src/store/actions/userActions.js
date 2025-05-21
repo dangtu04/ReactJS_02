@@ -5,6 +5,8 @@ import {
   editUser,
   getAllDoctors,
   getAllUsers,
+  getDoctorDetail,
+  getMarkdownByDoctorId,
   getTopDoctor,
 } from "../../services/userService";
 import actionTypes from "./actionTypes";
@@ -21,7 +23,6 @@ export const userLoginFail = () => ({
 export const processLogout = () => ({
   type: actionTypes.PROCESS_LOGOUT,
 });
-
 
 ////////////////// Create User
 export const addNewUser = (data) => {
@@ -47,7 +48,6 @@ export const addUserSuccess = () => ({
 export const addUserFailed = () => ({
   type: actionTypes.ADD_USER_FAILED,
 });
-
 
 ////////////////// Get User
 export const fetchAllUser = () => {
@@ -100,7 +100,6 @@ export const deleteUserFailed = () => ({
   type: actionTypes.DELETE_USER_FAILED,
 });
 
-
 ////////////////// Edit User
 export const editAUser = (editData) => {
   return async (dispatch, setState) => {
@@ -126,12 +125,11 @@ export const editUserFailed = () => ({
   type: actionTypes.UPDATE_USER_FAILED,
 });
 
-
 ////////////////// Get Top Doctor
 export const fetchTopDoctor = () => {
   return async (dispatch, setState) => {
     try {
-      let res = await getTopDoctor("5");
+      let res = await getTopDoctor("10");
       if (res && res.errCode === 0) {
         dispatch(fetchTopDoctorSuccess(res.data));
       } else {
@@ -139,7 +137,7 @@ export const fetchTopDoctor = () => {
       }
     } catch (error) {
       dispatch(fetchTopDoctorFailed());
-      console.log('FETCH_TOP_DOCTOR_FAILED: ',error);
+      console.log("FETCH_TOP_DOCTOR_FAILED: ", error);
     }
   };
 };
@@ -151,7 +149,6 @@ export const fetchTopDoctorSuccess = (data) => ({
 export const fetchTopDoctorFailed = () => ({
   type: actionTypes.FETCH_TOP_DOCTOR_FAILED,
 });
-
 
 ////////////////// Get All Doctor
 export const fetchAllDoctor = () => {
@@ -165,7 +162,7 @@ export const fetchAllDoctor = () => {
       }
     } catch (error) {
       dispatch(fetchAllDoctorFailed());
-      console.log('FETCH_ALL_DOCTOR_FAILED: ',error);
+      console.log("FETCH_ALL_DOCTOR_FAILED: ", error);
     }
   };
 };
@@ -178,7 +175,6 @@ export const fetchAllDoctorFailed = () => ({
   type: actionTypes.FETCH_ALL_DOCTOR_FAILED,
 });
 
-
 ////////////////// Save doctor detail
 
 export const saveDoctorDetail = (data) => {
@@ -190,10 +186,10 @@ export const saveDoctorDetail = (data) => {
       } else {
         dispatch(saveDoctorDetailFailed());
       }
-      return res
+      return res;
     } catch (error) {
       dispatch(saveDoctorDetailFailed());
-      console.log('SAVE_DOCTOR_DETAIL_FAILED: ',error);
+      console.log("SAVE_DOCTOR_DETAIL_FAILED: ", error);
     }
   };
 };
@@ -205,4 +201,52 @@ export const saveDoctorDetailFailed = () => ({
   type: actionTypes.SAVE_DOCTOR_DETAIL_FAILED,
 });
 
+/////////////// Get doctor detail
 
+export const fetchDoctorDetail = (id) => {
+  return async (dispatch, setState) => {
+    try {
+      let res = await getDoctorDetail(id);
+      if (res && res.errCode === 0) {
+        dispatch(fetchDoctorDetailSuccess(res.data));
+      } else {
+        dispatch(fetchDoctorDetailFailed());
+      }
+    } catch (error) {
+      dispatch(fetchDoctorDetailFailed());
+      console.log("FETCH_DOCTOR_DETAIL_FAILED: ", error);
+    }
+  };
+};
+
+export const fetchDoctorDetailSuccess = (data) => ({
+  type: actionTypes.FETCH_DOCTOR_DETAIL_SUCCESS,
+  doctorDetail: data,
+});
+export const fetchDoctorDetailFailed = () => ({
+  type: actionTypes.FETCH_DOCTOR_DETAIL_FAILED,
+});
+
+// fetch markdown by doctorId
+export const fetchMarkdownByDoctorId = (doctorId) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getMarkdownByDoctorId(doctorId);
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_MARKDOWN_BY_DOCTOR_SUCCESS,
+          doctorMarkdown: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_MARKDOWN_BY_DOCTOR_FAILED,
+        });
+      }
+    } catch (error) {
+      console.log("FETCH_MARKDOWN_BY_DOCTOR_FAILED: ", error);
+      dispatch({
+        type: actionTypes.FETCH_MARKDOWN_BY_DOCTOR_FAILED,
+      });
+    }
+  };
+};

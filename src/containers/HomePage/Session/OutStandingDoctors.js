@@ -7,9 +7,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./OutStandingDoctors.scss";
 import * as actions from "../../../store/actions";
-import { LANGUAGES } from "../../../utils/constant";
+import { LANGUAGES, path } from "../../../utils/constant";
 
 import defaultAvt from "../../../assets/images/default-avatar.jpg";
+import { withRouter } from "react-router";
 
 // Custom arrow components for next/prev buttons
 function SampleNextArrow(props) {
@@ -53,10 +54,14 @@ class OutStandingDoctors extends React.Component {
     }
   }
 
+  handleViewDoctorDetail = (doctor) => {
+    this.props.history.push(`${path.DOCTOR_DETAIL}/${doctor.id}`)
+  }
+
   render() {
     const settings = {
       dots: false,
-      infinite: true,
+      infinite: false,
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 2,
@@ -97,7 +102,9 @@ class OutStandingDoctors extends React.Component {
                   let nameEn = `${item.positionData.valueEn} ${item.firstName} ${item.lastName}`;
                   return (
                     <div key={index} className="slide-item">
-                      <Link to="" className="slide-inner">
+                      <div className="slide-inner"
+                        onClick={()=>this.handleViewDoctorDetail(item)}
+                      >
                         <img
                           className="featured-dr-img"
                           src={imgBase64 || defaultAvt}
@@ -107,7 +114,7 @@ class OutStandingDoctors extends React.Component {
                           {language === LANGUAGES.VI ? nameVi : nameEn}
                         </span>
                         <p>Bệnh Viêm gan</p>
-                      </Link>
+                      </div>
                     </div>
                   );
                 })}
@@ -131,4 +138,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctors);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctors));

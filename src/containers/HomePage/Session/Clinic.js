@@ -57,14 +57,14 @@ class Clinic extends React.Component {
           <Slider {...settings}>
             {[1, 2, 3, 4, 5, 6].map((item) => (
               <div key={item} className="slide-item">
-                <Link to='' className="slide-inner">
+                <div className="slide-inner">
                   <img
                     className="specialty-img"
                     src="https://cdn.bookingcare.vn/fo/2019/03/11/152704logo-bvcr-moi.jpg"
                     alt={`specialty-${item}`}
                   />
                   <span>Bệnh viện Chợ Rẫy</span>
-                </Link>
+                </div>
               </div>
             ))}
           </Slider>
