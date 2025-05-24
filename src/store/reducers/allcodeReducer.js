@@ -4,6 +4,7 @@ const initialState = {
   genders: [],
   positions: [],
   roles: [],
+  times: []
 };
 
 const allcodeReducer = (state = initialState, action) => {
@@ -57,6 +58,19 @@ const allcodeReducer = (state = initialState, action) => {
 
     case actionTypes.FETCH_ROLE_FAILED:
       state.roles = []
+      return {
+        ...state,
+      };
+
+    // Time
+     case actionTypes.FETCH_TIME_SUCCESS:
+      state.times = action.dataTime;
+      return {
+        ...state,
+      };
+
+    case actionTypes.FETCH_TIME_FAILED:
+      state.times = []
       return {
         ...state,
       };

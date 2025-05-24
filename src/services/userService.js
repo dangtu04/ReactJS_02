@@ -42,8 +42,11 @@ const getDoctorDetail = (id) => {
 
 const getMarkdownByDoctorId = (doctorId) => {
   return axios.get(`/api/get-markdown-by-doctorid?doctorId=${doctorId}`);
+};
 
-}
+const saveBulkDoctorSchedule = (data) => {
+  return axios.post("/api/bulk-create-schedule", data);
+};
 export {
   userLogin,
   getAllUsers,
@@ -54,5 +57,6 @@ export {
   getAllDoctors,
   createDoctorDetail,
   getDoctorDetail,
-  getMarkdownByDoctorId
+  getMarkdownByDoctorId,
+  saveBulkDoctorSchedule,
 };

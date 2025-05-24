@@ -8,6 +8,7 @@ import "./UserManagerV2.scss";
 import TableUser from "./TableManageUser";
 import { toast } from "react-toastify";
 import CommonUtils from "../../../utils/CommonUtils";
+import moment from "moment";
 
 class UserManageV2 extends Component {
   constructor(props) {
@@ -134,13 +135,14 @@ class UserManageV2 extends Component {
 
     let { action } = this.state;
     if (action === manageActions.EDIT) {
+       let formattedDate = moment(this.state.dateOfBirth).format('DD/MM/YYYY')
       let data = {
         id: this.state.userIdEdit,
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         email: this.state.email,
         phoneNumber: this.state.phoneNumber,
-        dateOfBirth: this.state.dateOfBirth,
+        dateOfBirth: formattedDate,
         positionId: this.state.positionId,
         address: this.state.address,
         gender: this.state.gender,
@@ -164,13 +166,15 @@ class UserManageV2 extends Component {
     } else {
       let isValid = this.validateUserData();
       if (isValid === false) return;
+
+      let formattedDate = moment(this.state.dateOfBirth).format('DD/MM/YYYY')
       let res = await this.props.addNewUser({
         firstName: this.state.firstName,
         lastName: this.state.lastName,
         email: this.state.email,
         phoneNumber: this.state.phoneNumber,
         password: this.state.password,
-        dateOfBirth: this.state.dateOfBirth,
+        dateOfBirth: formattedDate,
         positionId: this.state.positionId,
         address: this.state.address,
         gender: this.state.gender,

@@ -1,4 +1,5 @@
 import { getAllCode } from "../../services/allcodeService";
+import { saveBulkDoctorSchedule } from "../../services/userService";
 import actionTypes from "./actionTypes";
 
 // gender
@@ -78,3 +79,48 @@ export const fetchRoleSuccess = (roleData) => ({
 export const fetchRoleFailed = () => ({
   type: actionTypes.FETCH_ROLE_FAILED,
 });
+
+
+
+// Time
+export const fetchScheduleTime = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllCode("TIME");
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_TIME_SUCCESS,
+          dataTime: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_TIME_FAILED,
+        });
+      }
+    } catch (error) {
+      console.log("FETCH_TIME_FAILED: ", error);
+      dispatch({
+        type: actionTypes.FETCH_TIME_FAILED,
+      });
+    }
+  };
+};
+
+
+// save bulk schedule
+export const saveBulkDoctorScheduleRedux = (data) => {
+  return async (dispatch) => {
+    try {
+      let res = await saveBulkDoctorSchedule(data);
+      if (res && res.errCode === 0) {
+        dispatch({ type: actionTypes.SAVE_BULK_SCHEDULE_SUCCESS });
+      } else {
+        dispatch({ type: actionTypes.SAVE_BULK_SCHEDULE_FAILED });
+      }
+      return res;
+    } catch (error) {
+      dispatch({ type: actionTypes.SAVE_BULK_SCHEDULE_FAILED });
+      return null;
+    }
+  };
+};

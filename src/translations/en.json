@@ -13,6 +13,7 @@
      "clinic": {
         "clinic": "Clinic"
     },
+
     "featured-doctor": "Featured Doctor",
 
     "menu": {
@@ -20,15 +21,20 @@
             "user": "User",
             "user-manage-v1": "User Management v1",
             "user-manage-v2": "User Management v2",
-            "doctor-manage": "Doctor Management",
+            "doctor-introduce": "Doctor's Introduction",
             "clinic": "Clinic",
             "clinic-manage": "Clinic Management",
             "specialty": "Specialty",
             "specialty-manage": "Specialty Management",
             "handbook": "Handbook",
-            "handbook-manage": "Handbook Management"
+            "handbook-manage": "Handbook Management",
+            "doctor-schedule": "Doctor Schedule Management" 
         },
-            "welcome":"Welcome"
+        "welcome":"Welcome",
+        "doctor": {
+            "doctor": "Doctor",
+            "schedule": "Schedule"
+        }
     },
     "user-manage": {
         "form": {
@@ -48,6 +54,12 @@
             "create": "Add new user",
             "update": "Update"
         }
+    },
+     "schedule-manage" : {
+        "title": "Manage medical appointment schedule",
+        "choose-doctor": "Choose doctor",
+        "choose-date": "Choose date",
+        "save": "Save schedule"
     }
 
 }
